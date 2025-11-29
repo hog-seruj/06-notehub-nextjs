@@ -28,17 +28,17 @@ export const fetchNotes = async (
   return response.data;
 };
 
-export const createNote = async (data: CreateNoteData) => {
+export const createNote = async (data: CreateNoteData): Promise<Note> => {
   const response = await noteInstance.post<Note>('/notes', data);
   return response.data;
 };
 
-export const deleteNote = async (id: Note['id']) => {
-  const response = await noteInstance.delete(`/notes/${id}`);
+export const deleteNote = async (id: Note['id']): Promise<Note> => {
+  const response = await noteInstance.delete<Note>(`/notes/${id}`);
   return response.data;
 };
 
-export const fetchNoteById = async (id: Note['id']) => {
-  const response = await noteInstance.get(`/notes/${id}`);
+export const fetchNoteById = async (id: Note['id']): Promise<Note> => {
+  const response = await noteInstance.get<Note>(`/notes/${id}`);
   return response.data;
 };

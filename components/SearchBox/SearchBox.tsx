@@ -14,10 +14,7 @@ export default function SearchBox({ search, onChange }: SearchBoxProps) {
       onChange={(e) => {
         onChange(e.target.value);
       }}
-      onFocus={(e) => {
-        e.target.value = '';
-      }}
-      defaultValue={search}
+      value={search}
     />
   );
 }

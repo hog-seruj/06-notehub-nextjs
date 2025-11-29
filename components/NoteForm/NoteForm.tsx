@@ -27,9 +27,13 @@ const NoteFormSchema = Yup.object().shape({
 
 interface NoteFormProps {
   closeModal: () => void;
+  resetSearchBox: (value: string) => void;
 }
 
-export default function NoteForm({ closeModal }: NoteFormProps) {
+export default function NoteForm({
+  closeModal,
+  resetSearchBox,
+}: NoteFormProps) {
   const fieldId = useId();
 
   const queryClient = useQueryClient();
@@ -38,8 +42,9 @@ export default function NoteForm({ closeModal }: NoteFormProps) {
     mutationFn: (note) => createNote(note),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['notes'] });
-      toast.success('Note edited successfully!');
+      toast.success('Note created successfully!');
       closeModal();
+      resetSearchBox('');
     },
     onError: (error) => {
       toast.error(`${error}`);

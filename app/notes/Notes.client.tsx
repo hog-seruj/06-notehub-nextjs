@@ -46,7 +46,7 @@ export default function NotesClient() {
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        <SearchBox search={searchTextDebounce} onChange={handleSearch} />
+        <SearchBox search={searchText} onChange={handleSearch} />
         {data && data.totalPages > 1 && (
           <Pagination
             totalPages={data.totalPages}
@@ -64,7 +64,7 @@ export default function NotesClient() {
       {data && <NoteList notes={data.notes} />}
       {isModalOpen && (
         <Modal onClose={closeModal}>
-          <NoteForm closeModal={closeModal} />
+          <NoteForm closeModal={closeModal} resetSearchBox={handleSearch} />
         </Modal>
       )}
     </div>
